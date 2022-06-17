@@ -89,6 +89,12 @@ func PatPatch(c *gin.Context) {
 		return
 	}
 	pat, err := service.PatchPat(&inp, id)
+	if err == nil {
+		c.JSON(200, gin.H{
+			"response": pat,
+		})
+		return
+	}
 	fmt.Println(err)
 	if err.Error() == "id not found" {
 		c.JSON(400, gin.H{"error": "Id not found!"})
@@ -99,9 +105,23 @@ func PatPatch(c *gin.Context) {
 		c.JSON(400, gin.H{"error": "Doctor not found!"})
 		return
 	}
+}
 
-	c.JSON(200, gin.H{
-		"response": pat,
-	})
-	return
+func GetDoctorPatientList(c *gin.Context) {
+	/*
+		id, _ := strconv.Atoi(c.Param("id"))
+		var patients []models.Patient
+		q := models.DB.Where(map[string]interface{}{"doctor_id": id}).Find(patients)
+		if q.Error != nil {
+			fmt.Println(q.Error)
+		}
+	*/
+
+	id := c.Param("id")
+	patients, bol := service.GetDocPatList(id)
+	if bol == false {
+		c.JSON(400, gin.H{"error": "Doctor not found!"})
+		return
+	}
+	c.JSON(200, gin.H{"response": patients})
 }

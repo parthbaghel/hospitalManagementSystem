@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+
 	router := gin.Default()
 
 	models.ConnectDatabase()
@@ -19,6 +20,7 @@ func main() {
 	router.GET("/patient/:id", controllers.PatGet)
 	router.PATCH("/patient/:id", controllers.PatPatch)
 
+	router.GET("/doctorPatientList/:id", controllers.GetDoctorPatientList)
 	err := router.Run()
 	if err != nil {
 		return

@@ -2,7 +2,7 @@ package service
 
 import (
 	"fmt"
-	"hostpitalProject/models"
+	models "hostpitalProject/models"
 	"strconv"
 	"time"
 )
@@ -74,4 +74,15 @@ func PatchPat(item *models.PatPatchInpt, PatId string) (models.Patient, error) {
 		return pat, fmt.Errorf("doctor not found")
 	}
 	return pat, nil
+}
+
+func GetDocPatList(DocId string) ([]models.Patient, bool) {
+	id, _ := strconv.Atoi(DocId)
+	var patients []models.Patient
+	q := models.DB.Where(map[string]interface{}{"doctor_id": id}).Find(&patients)
+	if q.Error != nil {
+		return patients, false
+	}
+	return patients, true
+
 }
