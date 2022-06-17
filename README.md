@@ -46,8 +46,8 @@ Create a doctor a new entry of doctor in database
 ```
 {  
 "id": 1,
-“created_at”: 1655146724,
-“updated_at”: 1655146724,  
+“created_at”: "2022-06-16T13:15:57.485725Z",
+“updated_at”: "2022-06-16T13:15:57.485725Z",  
 “name”: “abcd”,
 “contact_no” : “1234567890”  
 }
@@ -58,8 +58,8 @@ Get a doctor entry from database
 ```
 {  
 "id": 1,
-“created_at”: 1655146724,
-“updated_at”: 1655146724,  
+“created_at”: "2022-06-16T13:15:57.485725Z",
+“updated_at”: "2022-06-16T13:15:57.485725Z",  
 “name”: “abcd”,
 “contact_no” : “1234567890”  
 }
